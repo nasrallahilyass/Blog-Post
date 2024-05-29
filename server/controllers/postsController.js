@@ -27,6 +27,7 @@ exports.getPostById = async (req, res) => {
     }
 }
 
+
 // create a post
 exports.createPost = async (req, res) => {
     const { title, content, author } = req.body;
@@ -42,7 +43,7 @@ exports.createPost = async (req, res) => {
 
 // update a post
 exports.updatePost = async (req, res) => {
-    const { title, content } = req.body;
+    const { content } = req.body;
     try {
         let post = await Post.findById(req.params.id);
         if (!post) {
