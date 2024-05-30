@@ -28,7 +28,7 @@ function Register() {
   return (
   <div className="flex flex-row h-screen">
     <div className="w-full h-screen flex justify-center items-center md:justify-center md:items-center">
-      <div className="max-full-md w-full">
+      <div className="max-w-lg w-full">
         <Card className="w-full h-auto">
           <CardHeader>
             <CardTitle className="text-center mb-2">Register</CardTitle>
@@ -75,8 +75,20 @@ function Register() {
         </Card>
       </div>
     </div>
-    <div className="w-full h-screen bg-slate-950 hidden md:block">
-    </div>
+    <div className="relative w-full h-screen bg-slate-950 hidden md:block">
+        <div className="absolute top-0 right-0 w-full text-white p-4 mt-6 mr-3 text-right">
+          <a href="/" className="font-mono text-xl">
+          <span className="text-base">{"</>"}</span> ILYASS NASRALLAH
+          </a>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full text-white p-4 mb-6 ml-3">
+          <p className="font-mono">
+            “This library has saved me countless hours of work and helped me
+            deliver stunning designs to my clients faster than ever before.”
+          </p>
+          <p className="font-mono mt-3">Sofia Davis</p>
+        </div>
+      </div>
   </div>
 
   )
