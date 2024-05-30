@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -20,6 +21,10 @@ import {
 
 
 function Register() {
+    const navigate = useNavigate();
+    const handleLogin = () => {
+        navigate('/login')
+    }
   return (
   <div className="flex flex-row h-screen">
     <div className="w-full h-screen flex justify-center items-center md:justify-center md:items-center">
@@ -64,7 +69,7 @@ function Register() {
             </form>
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline">Login</Button>
+            <Button onClick={handleLogin} variant="outline">Login</Button>
             <Button>Register</Button>
           </CardFooter> 
         </Card>
