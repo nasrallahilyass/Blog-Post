@@ -15,27 +15,27 @@ import {
 const infoData = [
   {
     icon: <User2 size={20} />,
-    text: 'Ryan Davis',
+    text: 'ILYASS NASRALAH',
   },
   {
     icon: <PhoneCall size={20} />,
-    text: '+012 345 6789',
+    text: '+212 6 01 28 45 16',
   },
   {
     icon: <MailIcon size={20} />,
-    text: 'youremail@email.com',
+    text: 'ilyass.nasralah@gmail.com',
   },
   {
     icon: <Calendar size={20} />,
-    text: 'Born on 10 Mar, 1998',
+    text: '17.07.2000',
   },
   {
     icon: <GraduationCap size={20} />,
-    text: 'Master on Computer Science',
+    text: 'Bachelor of cyber security',
   },
   {
     icon: <HomeIcon size={20} />,
-    text: '321 Blue Avenue, NY, USA',
+    text: 'Casablanca, Morocco',
   },
 ];
 
@@ -44,19 +44,14 @@ const qualificationData = [
     title: 'education',
     data: [
       {
-        university: 'Example University',
-        qualification: 'Bachelor of Science',
-        years: '2015 - 2018',
+        university: 'School Abderrahmane Belkorchi',
+        qualification: 'High School Diploma',
+        years: '2018',
       },
       {
-        university: 'Another University',
-        qualification: 'Master of Arts',
-        years: '2019 - 2021',
-      },
-      {
-        university: 'Yet Another University',
-        qualification: 'Ph.D in Computer Science',
-        years: '2021 - 2025',
+        university: 'ENSET Mohammedia University',
+        qualification: 'Bachelor of Cyber Security',
+        years: '2023 - 2024',
       },
     ],
   },
@@ -64,20 +59,15 @@ const qualificationData = [
     title: 'experience',
     data: [
       {
-        company: 'ABC Inc.',
-        role: 'Software Engineer',
-        years: '2018 - 2020',
+        company: 'Outsourcia',
+        role: 'After Sales Service Agent',
+        years: '2021 - 2023',
       },
       {
-        company: 'XYZ Corporation',
-        role: 'Senior Developer',
-        years: '2020 - 2022',
-      },
-      {
-        company: 'Tech Innovators',
-        role: 'Lead Developer',
-        years: '2022 - Present',
-      },
+        company: 'ARX-X Factory',
+        role: 'Fullsatck Developer',
+        years: 'Jul 2023 - Dec 2023',
+      }
     ],
   },
 ];
@@ -161,12 +151,10 @@ const About = () => {
                 <TabsContent value='personal'>
                   <div className='text-center xl:text-left'>
                     <h3 className='h3 mb-4'>
-                      Unmatched Service Quality for Over 10 Years
+                      Passionate Full Stack:
                     </h3>
                     <p className='subtitle max-w-xl mx-auto xl:mx-0'>
-                      I specialize in crafting intuitive websites with
-                      cutting-edge technology, delivering dynamic and engaging
-                      user experiences.
+                    My name is ILYASS NASRALLAH, I'm 23 years old. I am a passionate Full Stack JavaScript developer. I have strong communication and adaptability skills, and I am highly motivated to take on new challenges...
                     </p>
                     {/* icons */}
                     <div className='grid xl:grid-cols-2 gap-4 mb-12'>
@@ -184,9 +172,12 @@ const About = () => {
                     </div>
                     {/* languages */}
                     <div className='flex flex-col gap-y-2'>
-                      <div className='text-primary'>Language Skill</div>
-                      <div className='border-b border-border'></div>
-                      <div>English, French, Spanish, Italian</div>
+                      <div className='text-primary text-xl font-bold mb-3'>Language Skill:</div>
+                      {/* <div className='border-b border-border'></div> */}
+                      <div><span className='font-bold text-2xl'>. </span>Mother Tongue is <span className='font-bold'>Arabic</span></div>
+                      <div><span className='font-bold text-2xl'>. </span>Fluent in <span className='font-bold'>ENGLISH</span>  </div>
+                      <div><span className='font-bold text-2xl'>. </span>Proficient in  <span className='font-bold'>Deutsch and Spanich</span></div>
+                      <div><span className='font-bold text-2xl'>. </span>Conversant in <span className='font-bold'>French</span></div>
                     </div>
                   </div>
                 </TabsContent>
@@ -194,7 +185,7 @@ const About = () => {
                 <TabsContent value='qualifications'>
                   <div>
                     <h3 className='h3 mb-8 text-center xl:text-left'>
-                      My Awesome Journey
+                      My Journey
                     </h3>
                     {/* experience & education wrapper */}
                     <div className='grid md:grid-cols-2 gap-y-8'>
