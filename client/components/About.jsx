@@ -1,3 +1,5 @@
+"use client";
+
 import DevImg from './DevImg';
 import Image from 'next/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -77,16 +79,24 @@ const skillData = [
     title: 'skills',
     data: [
       {
-        name: 'HTML, CSS',
+        name: 'Programming Languages:',
       },
       {
-        name: 'Front-end Development',
+        tech: 'JavaScript, TypeScript, Python',
+        
       },
       {
-        name: 'Javascript, PHP',
+        name: 'Front-end Development:',
       },
       {
-        name: 'Back-end Development',
+        tech: 'HTML, CSS, React.js, Next.js, Tailwindcss',
+        
+      },
+      {
+        name: 'Back-end Development:',
+      },
+      {
+        tech: 'Node.js, Express.js, MongoDB,MySQL, Firebase, RESTful API, GraphQL, JWT',
       },
     ],
   },
@@ -173,7 +183,7 @@ const About = () => {
                     {/* languages */}
                     <div className='flex flex-col gap-y-2'>
                       <div className='text-primary text-xl font-bold mb-3'>Language Skill:</div>
-                      {/* <div className='border-b border-border'></div> */}
+                      <div className='border-b  border-border'></div>
                       <div><span className='font-bold text-2xl'>. </span>Mother Tongue is <span className='font-bold'>Arabic</span></div>
                       <div><span className='font-bold text-2xl'>. </span>Fluent in <span className='font-bold'>ENGLISH</span>  </div>
                       <div><span className='font-bold text-2xl'>. </span>Proficient in  <span className='font-bold'>Deutsch and Spanich</span></div>
@@ -265,7 +275,7 @@ const About = () => {
                 {/* skills */}
                 <TabsContent value='skills'>
                   <div className='text-center xl:text-left'>
-                    <h3 className='h3 mb-8'>What I Use Everyday</h3>
+                    <h3 className='h3 mb-8'>What I Use Everyday As A Developer?</h3>
                     {/* skills */}
                     <div className='mb-16'>
                       <h4 className='text-xl font-semibold mb-2'>Skills</h4>
@@ -274,13 +284,16 @@ const About = () => {
                       <div>
                         {getData(skillData, 'skills').data.map(
                           (item, index) => {
-                            const { name } = item;
+                            const { name, tech } = item;
                             return (
                               <div
-                                className='w-2/4 text-center xl:text-left mx-auto xl:mx-0'
+                                className='w-2/4 text-center xl:text-left mx-auto xl:mx-0 mb-2'
                                 key={index}
                               >
-                                <div className='font-medium'>{name}</div>
+                                <div className='font-bold '>
+                                  {name}
+                                  <div className='font-medium'>{tech}</div>
+                                </div>
                               </div>
                             );
                           }
@@ -288,6 +301,7 @@ const About = () => {
                       </div>
                     </div>
                     {/* tools */}
+
                     <div>
                       <h4 className='text-xl font-semibold mb-2 xl:text-left'>
                         Tools
@@ -311,6 +325,7 @@ const About = () => {
                         })}
                       </div>
                     </div>
+                    
                   </div>
                 </TabsContent>
               </div>
