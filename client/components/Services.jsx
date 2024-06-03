@@ -12,19 +12,19 @@ const servicesData = [
     icon: <GanttChartSquare size={72} strokeWidth={0.8} />,
     title: 'Web Design',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quasi libero quidem sit deserunt fuga.',
+      'Beautiful and elegant designs with interfaces that are intuitive, efficient and pleasant to use for the user.',
   },
   {
     icon: <Blocks size={72} strokeWidth={0.8} />,
     title: 'Web Development',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quasi libero quidem sit deserunt fuga.',
+      'Custom web development tailored to your specifications, designed to provide a flawless user experience.',
   },
   {
     icon: <Gem size={72} strokeWidth={0.8} />,
     title: 'App Development',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic quasi libero quidem sit deserunt fuga.',
+      'Design and transform website projects into mobile apps to provide a seamless ser experience.',
   },
 ];
 
