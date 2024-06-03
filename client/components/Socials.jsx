@@ -1,36 +1,21 @@
 'use client';
 
 import {
-  RiYoutubeFill,
   RiLinkedinFill,
   RiGithubFill,
-  RiFacebookFill,
-  RiInstagramFill,
 } from 'react-icons/ri';
 
 import Link from 'next/link';
 
 const icons = [
   {
-    path: '/',
-    name: <RiYoutubeFill />,
-  },
-  {
-    path: '/',
+    path: 'https://www.linkedin.com/in/ilyass-nasrallah/',
     name: <RiLinkedinFill />,
   },
   {
-    path: '/',
+    path: 'https://github.com/nasrallahilyass',
     name: <RiGithubFill />,
-  },
-  {
-    path: '/',
-    name: <RiFacebookFill />,
-  },
-  {
-    path: '/',
-    name: <RiInstagramFill />,
-  },
+  }
 ];
 
 const Socials = ({ containerStyles, iconsStyles }) => {
@@ -38,7 +23,7 @@ const Socials = ({ containerStyles, iconsStyles }) => {
     <div className={`${containerStyles}`}>
       {icons.map((icon, index) => {
         return (
-          <Link href={icon.path} key={index}>
+          <Link href={icon.path} target='_blank' key={index}>
             <div className={`${iconsStyles}`}>{icon.name}</div>
           </Link>
         );
