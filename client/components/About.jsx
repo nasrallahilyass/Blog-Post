@@ -104,17 +104,23 @@ const skillData = [
     title: 'tools',
     data: [
       {
-        imgPath: '/about/vscode.svg',
+        imgPath: '/about/javascript.svg',
       },
       {
-        imgPath: '/about/figma.svg',
+        imgPath: '/about/typescript.svg',
       },
       {
-        imgPath: '/about/notion.svg',
+        imgPath:'/about/nodejs.svg',
       },
       {
-        imgPath: '/about/wordpress.svg',
+        imgPath: '/about/mongodb.svg',
       },
+      {
+        imgPath: '/about/firebase.svg',
+      },
+      {
+        imgPath: '/about/graphql.svg',
+      }
     ],
   },
 ];
@@ -277,8 +283,8 @@ const About = () => {
                   <div className='text-center xl:text-left'>
                     <h3 className='h3 mb-8'>What I Use Everyday As A Developer?</h3>
                     {/* skills */}
-                    <div className='mb-16'>
-                      <h4 className='text-xl font-semibold mb-2'>Skills</h4>
+                    <div className='mb-12'>
+                      <h4 className='text-3xl font-semibold mb-2'>Skills</h4>
                       <div className='border-b border-border mb-4'></div>
                       {/* skill list */}
                       <div>
@@ -301,11 +307,10 @@ const About = () => {
                       </div>
                     </div>
                     {/* tools */}
-
                     <div>
-                      <h4 className='text-xl font-semibold mb-2 xl:text-left'>
+                      {/* <h4 className='text-xl font-semibold mb-2 xl:text-left'>
                         Tools
-                      </h4>
+                      </h4> */}
                       <div className='border-b border-border mb-4'></div>
                       {/* tool list */}
                       <div className='flex gap-x-8 justify-center xl:justify-start'>
