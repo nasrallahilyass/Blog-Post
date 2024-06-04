@@ -6,6 +6,11 @@ import Work from '@/components/Work';
 import Reviews from '@/components/Reviews';
 import Cta from '@/components/Cta';
 
+//metadata:
+export const metadata = {
+  title: 'Home',
+}
+
 export default function Home() {
   return (
     <main>

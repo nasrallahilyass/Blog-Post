@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 import ProjectCard from '@/components/ProjectCard';
 
+//metadata:
+// export const metadata = {
+//   title: 'Projects',
+// }
+
 const projectData = [
   {
     image: '/work/3.png',
