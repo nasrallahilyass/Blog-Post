@@ -1,46 +1,44 @@
 "use client";
-import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 import PostCard from "@/components/PostCard";
-import { useState } from "react";
 
 
 const postData = [
   {
-    image: '/work/3.png',
-    category: 'react js',
-    name: 'Nexa Website',
+    image: '/blog/1.jpg',
+    category: 'Personal',
+    title: 'My journey to becoming a software engineer',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
     link: '/',
     github: '/',
   },
-  // {
-  //   image: '/work/4.png',
-  //   category: 'react js',
-  //   name: 'Solstice Website',
-  //   description:
-  //     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-  //   link: '/',
-  //   github: '/',
-  // },
-  // {
-  //   image: '/work/2.png',
-  //   category: 'next js',
-  //   name: 'Lumina Website',
-  //   description:
-  //     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-  //   link: '/',
-  //   github: '/',
-  // },
-  // {
-  //   image: '/work/1.png',
-  //   category: 'next js',
-  //   name: 'Evolve Website',
-  //   description:
-  //     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-  //   link: '/',
-  //   github: '/',
-  // },
+  {
+    image: '/blog/2.png',
+    category: 'tech',
+    title: 'Next.js vs Gatsby.js: Which one should you choose?',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
+    link: '/',
+    github: '/',
+  },
+  {
+    image: '/blog/3.jpeg',
+    category: 'tech',
+    title: "Don't be a Junior Developer, be a Senior Beginner",
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
+    link: '/',
+    github: '/',
+  },
+  {
+    image: '/blog/4.png',
+    category: 'tech',
+    title: 'What is XSS? Stored Cross Site Scripting',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
+    link: '/',
+    github: '/',
+  },
   // {
   //   image: '/work/3.png',
   //   category: 'next js',
@@ -88,23 +86,10 @@ const postData = [
   // },
 ];
 
-// remove category duplicates
-const uniqueCategories = [
-  'all posts',
-  ...new Set(postData.map((item) => item.category)),
-];
+
 
 
 export default function Blog() {
-  const [categories, setCategories] = useState(uniqueCategories);
-  const [category, setCategory] = useState('all posts');
-
-  const filteredPosts = postData.filter((post) => {
-    // if category is 'all posts' return all posts, else filter by category
-    return category === 'all posts'
-      ? post
-      : post.category === category;
-  });
 
   return (
     <section className='min-h-screen pt-12'>
@@ -115,33 +100,15 @@ export default function Blog() {
         <h3 className="text-center mb-8 mx-auto text-2xl font-bold">
           Discover my stories and thoughts on the latest trends in tech.
         </h3>
-        {/* tabs */}
-        <Tabs defaultValue={category} className='mb-24 xl:mb-48'>
-          <TabsList className='w-full grid h-full md:grid-cols-4 lg:max-w-[640px] mb-12 mx-auto md:border dark:border-none'>
-            {categories.map((category, index) => {
-              return (
-                <TabsTrigger
-                  onClick={() => setCategory(category)}
-                  value={category}
-                  key={index}
-                  className='capitalize w-[162px] md:w-auto'
-                >
-                  {category}
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
-          {/* tabs content */}
-          <div className='text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4'>
-            {filteredPosts.map((post, index) => {
-              return (
-                <TabsContent value={category} key={index}>
-                  <PostCard post={post} />
-                </TabsContent>
-              );
-            })}
-          </div>
-        </Tabs>
+        <div className='text-lg xl:mt-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-8'>
+          {postData.map((post, index) => {
+            return (
+              <div key={index} className="flex justify-center">
+                <PostCard post={post} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
