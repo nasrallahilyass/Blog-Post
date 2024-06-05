@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { Button } from './ui/button';
-import { Download, Send } from 'lucide-react';
+import { Download, Rss } from 'lucide-react';
 
 import {
   RiBriefcase4Fill,
@@ -43,9 +43,9 @@ const Hero = () => {
             </p>
             {/* buttons */}
             <div className='flex flex-col gap-y-3 md:flex-row gap-x-3 mx-auto xl:mx-0 mb-12'>
-              <Link href='/contact'>
+              <Link href='/blogs'>
                 <Button className='gap-x-2'>
-                  Contact me <Send size={18} />
+                  Check my Blog <Rss size={18} />
                 </Button>
               </Link>
               <Button variant='secondary' className='gap-x-2' onClick={handelDownloadCv}>
