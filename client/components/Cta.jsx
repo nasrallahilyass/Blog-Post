@@ -1,5 +1,7 @@
 import { Button } from './ui/button';
 import Link from 'next/link';
+import { Send } from 'lucide-react';
+
 
 const Cta = () => {
   return (
@@ -10,7 +12,7 @@ const Cta = () => {
             Prepared to turn your ideas into reality? I'm here to help
           </h2>
           <Link href='/contact'>
-            <Button>Contact me</Button>
+            <Button className='gap-x-2'>Contact me <Send size={18} /></Button>
           </Link>
         </div>
       </div>
