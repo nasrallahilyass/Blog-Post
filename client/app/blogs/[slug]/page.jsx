@@ -21,8 +21,8 @@ const SinglePost = () => {
   // };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
-      <h1 className="text-3xl text-center sm:text-4xl font-bold mb-7 text-gray-900">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 ">
+      <h1 className="text-3xl text-center sm:text-4xl font-bold mb-7 text-gray-900 dark:text-white">
         {post.title}
       </h1>
       <img
@@ -30,7 +30,7 @@ const SinglePost = () => {
         src={post.image}
         alt={post.title}
       />
-      <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+      <p className="text-lg sm:text-xl text-gray-700 leading-relaxed dark:text-white">
         {post.description}
       </p>
 
