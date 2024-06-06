@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Card, CardHeader } from './ui/card'; 
 import { Badge } from './ui/badge';
 import { Button } from "@/components/ui/button"
+import Link from 'next/link';
 
 
 const PostCard = ({ post }) => {
@@ -26,7 +27,9 @@ const PostCard = ({ post }) => {
         </Badge>
         <h4 className='h4 mb-1'>{post.title}</h4>
         <p className='text-muted-foreground text-lg'>{post.description}</p>
-        <Button className='flex items-center justify-center rounded-lg mx-auto my-3'>Extend Blog</Button>
+        <Link href={`/blogs/${post.slug}`}>
+          <Button className='flex items-center justify-center rounded-lg mx-auto my-3'>Extend Blog</Button>
+        </Link>
 
       </div>
     </Card>
