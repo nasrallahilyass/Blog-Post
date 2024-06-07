@@ -94,3 +94,12 @@
   .swiper-pagination-bullet {
   @apply bg-primary;
 }
+
+/* React Quill styling */
+.ql-editor {
+  @apply text-base text-foreground;
+}
+
+.quill > .ql-container > .ql-editor.al-blank::before {
+  @apply p-4;
+}
