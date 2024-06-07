@@ -44,6 +44,9 @@ const NewPost = () => {
         placeholder='Tell us your story'
         className='quill-editor bg-card text-card-foreground p-3 rounded shadow'
       />
+      <Button className="my-5">
+        Post
+      </Button>
     </div>
   );
 };
