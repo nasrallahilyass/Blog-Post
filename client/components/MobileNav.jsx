@@ -1,15 +1,30 @@
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { AlignJustify } from 'lucide-react';
+import { signOut, useSession } from "next-auth/react";
 
 import Nav from './Nav';
 import Logo from './Logo';
 import Socials from './Socials';
 
 const MobileNav = () => {
+  const {data, status} = useSession();
+
+  const handleGoogleLogout = (e) => {
+    e.preventDefault();
+    signOut('google');
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
+      <div className='flex gap-x-6 cursor-pointer'>
+        {
+          status === 'authenticated' && (
+          <a onClick={handleGoogleLogout} className='font-bold'>Log out</a>
+          )
+        }
         <AlignJustify className='cursor-pointer' />
+      </div>
       </SheetTrigger>
       <SheetContent>
         <div className='flex flex-col items-center justify-between h-full py-8'>
