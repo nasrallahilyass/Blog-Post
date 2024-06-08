@@ -1,7 +1,38 @@
-import React from "react";
+"use client";
+import { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+//for icons
+import { Button } from "components/ui/button";
+import { Github } from "lucide-react";
+import { FcGoogle } from "react-icons/fc";
+
+
 // components
-import LoginForm from "@/components/LoginForm";
 const Login = () => {
+  const router = useRouter();
+  const {data, status} = useSession();
+  console.log(data, status);
+
+  // handle github login
+  const handleGithubLogin = (e) => {
+    e.preventDefault();
+    signIn("github");
+  };
+  // handle google login
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    signIn("google");
+  };
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/blogs");
+    }
+  }
+  , [status]);
+  
   return (
     <section>
       <div className="container mx-auto lg:flex lg:justify-center xl:flex xl:justify-center my-20">
@@ -18,9 +49,24 @@ const Login = () => {
             with readers through valuable content and engaging narratives.
           </p>
         </div>
-        {/* form */}
+        {/* auth */}
         <div className="w-full lg:w-1/2 lg:flex justify-center items-center">
-          <LoginForm />
+          <form className="flex flex-col gap-y-4">
+            <Button className="mt-3" type="submit" onClick={handleGithubLogin}>
+              Login Now Github
+              <Github size={20} className="ml-3 text-white dark:text-black" />
+            </Button>
+            <Button className="bg-blue-500" onClick={handleGoogleLogin}>
+              Login with Google
+              <FcGoogle size={20} color="white" className="ml-3" />
+            </Button>
+            <div className="flex gap-x-2 justify-center mb-3">
+              <p>Don't have an account?</p>
+              <a href="/" className="underline uppercase">
+                Register Here!
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </section>
