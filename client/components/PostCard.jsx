@@ -3,11 +3,12 @@ import { Card, CardHeader } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from "@/components/ui/button"
 import Link from 'next/link';
+import { Description } from '@radix-ui/react-dialog';
 
 
 const PostCard = ({ post }) => {
 
-  const truncatedDescription = post.description.split(' ').slice(0, 10).join(' ') + (' ...');
+  // const truncatedDescription = post.description.split(' ').slice(0, 10).join(' ') + (' ...');
   return (
     <Card className='group overflow-hidden relative' style={{ width: '400px' }}>
       <CardHeader className='p-0'>
@@ -28,7 +29,7 @@ const PostCard = ({ post }) => {
           {post.category}
         </Badge>
         <h4 className='h4 mb-1'>{post.title}</h4>
-        <p className='text-muted-foreground text-lg'>{truncatedDescription}</p>
+        <p className='text-muted-foreground text-lg line-clamp-2'>{post.description}</p>
         <Link href={`/blogs/${post.slug}`}>
           <Button className='flex items-center justify-center rounded-lg mx-auto my-3'>Extend Blog</Button>
         </Link>
