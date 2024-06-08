@@ -12,8 +12,8 @@ const links = [
   { path: '/projects', name: 'my projects' },
   { path: '/blogs', name: 'my Blogs' },
   { path: '/contact', name: 'contact' },
-  { path: '/register', name: 'register' },
-  {path: '/login', name: 'login'}
+  // { path: '/register', name: 'register' },
+  { path: '/auth', name: 'auth'}
 ];
 
 const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
