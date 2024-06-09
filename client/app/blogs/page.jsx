@@ -1,4 +1,5 @@
 "use client";
+import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
 import  postDataWithSlugs  from "@/data/data";
 
@@ -14,6 +15,10 @@ export default function Blog() {
         <h2 className="text-center mb-8 mx-auto text-2xl font-bold">
           Discover my stories and thoughts on the latest trends in tech.
         </h2>
+        <h3 className="ml-6 font-bold text-2xl mb-6 underline">
+          Categories:
+        </h3>
+        <Categories/>
         <h3 className="ml-6 font-bold text-2xl mb-6 underline">
           Recent Posts:
         </h3>
