@@ -1,71 +1,73 @@
-const Comment = require('../models/Comment')
+const prisma = require('../prisma');
 
-
-
-// create comment
+// Create comment
 exports.createComment = async (req, res) => {
-    const {content, author, post} = req.body
-    try {
-        const comment = new Comment({content, author, post})
-        await comment.save()
-        res.status(201).json(comment)
-    } catch (error) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-    }
-}
+  const { content, author, post } = req.body;
+  try {
+    const comment = await prisma.comment.create({
+      data: { content, authorId: author, postId: post },
+    });
+    res.status(201).json(comment);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+};
 
-// get all the comment 
+// Get all comments
 exports.getComment = async (req, res) => {
-    try {
-        const comments = await Comment.find().populate('author', 'name').populate('content')
-        res.json(comments)
-    } catch (err) {
-        console.log(err.message)
-        res.status(500).send('Server Error')
-    }
-}
+  try {
+    const comments = await prisma.comment.findMany({
+      include: { author: true, post: true },
+    });
+    res.json(comments);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+};
 
-//get comment by id
+// Get comment by ID
 exports.getCommentById = async (req, res) => {
-    try {
-        const comment = await Comment.findById(req.params.id).populate('author', 'name').populate('content')
-        if(!comment){
-            return res.status(404).json({msg : "Comment not found"})
-        }
-        res.json(comment)
-    } catch (error) {
-        console.log(err.message)
-        res.status(500).send('Server Error')
-    }    
-}
+  try {
+    const comment = await prisma.comment.findUnique({
+      where: { id: req.params.id },
+      include: { author: true, post: true },
+    });
+    if (!comment) {
+      return res.status(404).json({ msg: "Comment not found" });
+    }
+    res.json(comment);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+};
 
-// update comment
-
+// Update comment
 exports.updateComment = async (req, res) => {
-    try {
-        const {content} = req.body;
-        let comment = await Comment.findById(req.params.id);
-        if (!comment) {
-         return res.status(404).json({ msg: 'Comment not found' });
-    }
-        comment = await Comment.findByIdAndUpdate(req.params.id, { content }, { new: true });
-        res.json({msg: 'Comment Updated'});
-    } catch (err) {
-        console.log(err.message)
-        res.status(500).send('Server Error')
-    }
-}
+  const { content } = req.body;
+  try {
+    const comment = await prisma.comment.update({
+      where: { id: req.params.id },
+      data: { content },
+    });
+    res.json({ msg: "Comment Updated" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+};
 
-
-// delete comment
-
+// Delete comment
 exports.deleteComment = async (req, res) => {
-    try {
-        await Comment.findByIdAndDelete(req.params.id);
-        res.json({msg: 'Comment deleted'})
-    } catch (err) {
-        console.log(err.message)
-        res.status(500).send('Server Error')
-    }
-}
+  try {
+    await prisma.comment.delete({
+      where: { id: req.params.id },
+    });
+    res.json({ msg: "Comment deleted" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+};
