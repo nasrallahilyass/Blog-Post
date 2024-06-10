@@ -1,37 +1,18 @@
-import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+const fetcher = url => fetch(url).then(res => res.json());
+
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/categories");
-        if (!res.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        const data = await res.json();
-        setCategories(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  const { data: categories, error } = useSWR('http://localhost:5000/api/categories', fetcher);
 
   const getCategoryBackgroundColor = (index) => {
     const colors = ["bg-red-300", "bg-green-300", "bg-blue-300", "bg-orange-300", "bg-purple-300"];
     return colors[index % colors.length];
   };
+
+  if (error) return <div>Error: {error.message}</div>;
+  if (!categories) return <div>Loading...</div>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 mb-5">
