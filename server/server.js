@@ -1,24 +1,36 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 const cors = require('cors');
-const prisma = require('./prisma'); // Ensure this path is correct
+const dotenv = require('dotenv');
 
+// Load environment variables from .env file
 dotenv.config();
 
-console.log('Database URL:', process.env.DATABASE_URL);
-console.log('Prisma Client initialized:', prisma);
+const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comments');
+const categoryRoutes = require('./routes/categories');
 
 const app = express();
+
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000' // Replace with your Next.js app's URL
-}));
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE',
+})); 
 
-const commentsRoutes = require('./routes/comments');
-const categoriesRoutes = require('./routes/categories');
 
-app.use('/api/comments', commentsRoutes);
-app.use('/api/categories', categoriesRoutes);
+// Connect to MongoDB Atlas
+const db = process.env.DATABASE_URL;
+mongoose.connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log('MongoDB Connection Error:', err));
+
+app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/categories', categoryRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
