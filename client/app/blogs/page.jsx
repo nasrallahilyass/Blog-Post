@@ -1,11 +1,15 @@
 "use client";
+import useSWR from "swr";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard";
-import  postDataWithSlugs  from "@/data/data";
+const fetcher = url => fetch(url).then(res => res.json());
 
 
 export default function Blog() {
+  const { data: posts, error } = useSWR('http://localhost:5000/api/posts', fetcher);
 
+  if (error) return <div>Error: {error.message}</div>;
+  if (!posts) return <div>Loading...</div>;
   return (
     <section className='min-h-screen pt-12'>
       <div className='container mx-auto'>
@@ -24,7 +28,7 @@ export default function Blog() {
         </h3>
 
         <div className='text-lg gap-y-5 xl:mt-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-8'>
-          {postDataWithSlugs.map((post, index) => {
+          {posts.map((post, index) => {
             return (
               <div key={index} className="flex justify-center">
                 <PostCard post={post} />
