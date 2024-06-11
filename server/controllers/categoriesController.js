@@ -1,70 +1,66 @@
-const prisma = require('../prisma');
+const Category = require('../models/Category');
+
+// Create a new category
+exports.createCategory = async (req, res) => {
+  const { title, image } = req.body;
+  try {
+    const category = new Category({ title, image });
+    await category.save();
+    res.status(201).json(category);
+  } catch (error) {
+    console.error("Error during category creation:", error); // Log the error
+    res.status(500).send('Server Error');
+  }
+};
 
 // Get all categories
 exports.getCategories = async (req, res) => {
   try {
-    const categories = await prisma.category.findMany();
+    const categories = await Category.find();
     res.json(categories);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+    console.log(err.message);
+    res.status(500).send('Server Error');
   }
 };
 
-// Get a single category
-exports.getCategory = async (req, res) => {
+// Get category by ID
+exports.getCategoryById = async (req, res) => {
   try {
-    const category = await prisma.category.findUnique({
-      where: { id: req.params.id },
-    });
+    const category = await Category.findById(req.params.id);
     if (!category) {
       return res.status(404).json({ msg: "Category not found" });
     }
     res.json(category);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
   }
 };
 
-// Create a category
-exports.createCategory = async (req, res) => {
-  const { title, image } = req.body;
-  try {
-    const category = await prisma.category.create({
-      data: { title, image },
-    });
-    res.json(category);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-};
-
-// Update a category
+// Update category
 exports.updateCategory = async (req, res) => {
   const { title, image } = req.body;
   try {
-    const category = await prisma.category.update({
-      where: { id: req.params.id },
-      data: { title, image },
-    });
-    res.json(category);
+    const category = await Category.findByIdAndUpdate(
+      req.params.id,
+      { title, image },
+      { new: true }
+    );
+    res.json({ msg: "Category Updated", category });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+    console.log(err.message);
+    res.status(500).send('Server Error');
   }
 };
 
-// Delete a category
+// Delete category
 exports.deleteCategory = async (req, res) => {
   try {
-    await prisma.category.delete({
-      where: { id: req.params.id },
-    });
-    res.json({ msg: "Category removed" });
+    await Category.findByIdAndDelete(req.params.id);
+    res.json({ msg: "Category Deleted" });
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
+    console.log(err.message);
+    res.status(500).send('Server Error');
   }
 };
