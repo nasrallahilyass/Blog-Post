@@ -13,43 +13,11 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  posts         Post[]
-  comments      Comment[]
   accounts      Account[]
   sessions      Session[]
+  comments      Comment[] // Relation with Comment
+  // posts         Post[]    // Relation with Post
 }
-
-model Post {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  image       String?
-  title       String
-  description String
-  content     String
-  slug        String   @unique
-  categoryId  String   @db.ObjectId
-  category    Category @relation(fields: [categoryId], references: [id])
-  authorId    String   @db.ObjectId
-  author      User     @relation(fields: [authorId], references: [id])
-  createdAt   DateTime @default(now())
-  comments    Comment[]
-}
-
-model Category {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  image String
-  posts Post[]
-}
-model Comment {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  authorId  String    @db.ObjectId
-  postId    String    @db.ObjectId
-  author    User      @relation(fields: [authorId], references: [id])
-  post      Post      @relation(fields: [postId], references: [id])
-}
-
-
 
 model Account {
   id                 String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -57,12 +25,12 @@ model Account {
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  
-  access_token       String?  
+  refresh_token      String?
+  access_token       String?
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  
+  id_token           String?
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -79,10 +47,39 @@ model Session {
 }
 
 model VerificationToken {
-  identifier String   @id @map("_id")
+  identifier String @id @map("_id")
   token      String
   expires    DateTime
 
   @@unique([identifier, token])
 }
 
+model Post {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  image       String
+  title       String
+  slug        String    @unique
+  description String
+  categoryId  String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  comments    Comment[] // Relation with Comment
+}
+
+model Comment {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  authorId  String    @db.ObjectId
+  postId    String    @db.ObjectId
+  createdAt DateTime  @default(now())
+  author    User      @relation(fields: [authorId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+}
+
+model Category {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+  posts     Post[]   // Relation with Post
+}
