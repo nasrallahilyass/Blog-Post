@@ -1,19 +1,22 @@
-const Post = require('../models/Post');
-const slugify = require('../utils/slugify'); // Correctly import the slugify function
+const prisma = require('../utils/connect');
+const slugify = require('../utils/slugify');
 
 // Create a new post
 exports.createPost = async (req, res) => {
-  const { image, categoryId, title, description } = req.body;
-  const slug = slugify(title); // Generate slug from title
+  const { image, categoryId, title, description, userId } = req.body;
+  const slug = slugify(title); 
+  
   try {
-    const post = new Post({
-      image,
-      title,
-      slug,
-      description,
-      categoryId, // Ensure this references the correct category ID
+    const post = await prisma.post.create({
+      data: {
+        image,
+        title,
+        slug,
+        description,
+        categoryId,
+        userId,
+      },
     });
-    await post.save();
     res.status(201).json(post);
   } catch (error) {
     console.error("Error during post creation:", error); // Log the error
@@ -21,10 +24,22 @@ exports.createPost = async (req, res) => {
   }
 };
 
+
 // Get all posts
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await Post.find().populate('categoryId');
+    const posts = await prisma.post.findMany({
+      include: {
+        category: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+      },
+    });
     res.json(posts);
   } catch (err) {
     console.log(err.message);
@@ -35,7 +50,19 @@ exports.getPosts = async (req, res) => {
 // Get post by ID
 exports.getPostById = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id).populate('categoryId');
+    const post = await prisma.post.findUnique({
+      where: { id: req.params.id },
+      include: {
+        category: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+      },
+    });
     if (!post) {
       return res.status(404).json({ msg: "Post not found" });
     }
@@ -48,14 +75,36 @@ exports.getPostById = async (req, res) => {
 
 // Update post
 exports.updatePost = async (req, res) => {
-  const { image, category, title, description } = req.body;
+  const { image, categoryId, title, description, userId } = req.body;
+  
+  if (!title) {
+    return res.status(400).send('Title is required');
+  }
+
   const slug = slugify(title); // Generate slug from title
+  
   try {
-    const post = await Post.findByIdAndUpdate(
-      req.params.id,
-      { image, title, slug, description, categoryId: category },
-      { new: true }
-    );
+    const post = await prisma.post.update({
+      where: { id: req.params.id },
+      data: {
+        image,
+        title,
+        slug,
+        description,
+        categoryId,
+        userId,
+      },
+      include: {
+        category: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
+            image: true,
+          },
+        },
+      },
+    });
     res.json({ msg: "Post Updated", post });
   } catch (err) {
     console.log(err.message);
@@ -63,10 +112,13 @@ exports.updatePost = async (req, res) => {
   }
 };
 
+
 // Delete post
 exports.deletePost = async (req, res) => {
   try {
-    await Post.findByIdAndDelete(req.params.id);
+    await prisma.post.delete({
+      where: { id: req.params.id },
+    });
     res.json({ msg: "Post Deleted" });
   } catch (err) {
     console.log(err.message);
