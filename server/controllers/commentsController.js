@@ -1,14 +1,15 @@
-const Comment = require('../models/Comment');
+const prisma = require('../utils/connect');
 
 // Create a new comment
 exports.createComment = async (req, res) => {
   const { content, authorId, postId } = req.body;
   try {
-    const comment = new Comment({ content, authorId, postId });
-    await comment.save();
+    const comment = await prisma.comment.create({
+      data: { content, authorId, postId },
+    });
     res.status(201).json(comment);
   } catch (error) {
-    console.error("Error during comment creation:", error); // Log the error
+    console.error("Error during comment creation:", error);
     res.status(500).send('Server Error');
   }
 };
@@ -16,7 +17,12 @@ exports.createComment = async (req, res) => {
 // Get all comments
 exports.getComments = async (req, res) => {
   try {
-    const comments = await Comment.find().populate('authorId').populate('postId');
+    const comments = await prisma.comment.findMany({
+      include: {
+        author: true,
+        post: true,
+      },
+    });
     res.json(comments);
   } catch (err) {
     console.log(err.message);
@@ -27,7 +33,13 @@ exports.getComments = async (req, res) => {
 // Get comment by ID
 exports.getCommentById = async (req, res) => {
   try {
-    const comment = await Comment.findById(req.params.id).populate('authorId').populate('postId');
+    const comment = await prisma.comment.findUnique({
+      where: { id: req.params.id },
+      include: {
+        author: true,
+        post: true,
+      },
+    });
     if (!comment) {
       return res.status(404).json({ msg: "Comment not found" });
     }
@@ -42,11 +54,10 @@ exports.getCommentById = async (req, res) => {
 exports.updateComment = async (req, res) => {
   const { content } = req.body;
   try {
-    const comment = await Comment.findByIdAndUpdate(
-      req.params.id,
-      { content },
-      { new: true }
-    );
+    const comment = await prisma.comment.update({
+      where: { id: req.params.id },
+      data: { content },
+    });
     res.json({ msg: "Comment Updated", comment });
   } catch (err) {
     console.log(err.message);
@@ -57,7 +68,9 @@ exports.updateComment = async (req, res) => {
 // Delete comment
 exports.deleteComment = async (req, res) => {
   try {
-    await Comment.findByIdAndDelete(req.params.id);
+    await prisma.comment.delete({
+      where: { id: req.params.id },
+    });
     res.json({ msg: "Comment Deleted" });
   } catch (err) {
     console.log(err.message);
