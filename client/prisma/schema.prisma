@@ -1,3 +1,5 @@
+// schema.prisma
+
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -15,6 +17,8 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  comments      Comment[]
+  posts         Post[]
 }
 
 model Account {
@@ -50,4 +54,36 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Post {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  image       String
+  title       String
+  slug        String    @unique
+  description String
+  categoryId  String    @db.ObjectId
+  createdAt   DateTime  @default(now())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  comments    Comment[]
+  userId      String    @db.ObjectId
+  user        User      @relation(fields: [userId], references: [id])
+}
+
+model Comment {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  authorId  String    @db.ObjectId
+  postId    String    @db.ObjectId
+  createdAt DateTime  @default(now())
+  author    User      @relation(fields: [authorId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+}
+
+model Category {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  image     String
+  createdAt DateTime @default(now())
+  posts     Post[]
 }
