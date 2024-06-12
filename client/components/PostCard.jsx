@@ -26,9 +26,13 @@ const PostCard = ({ post }) => {
       </CardHeader>
       <div className='h-full px-8 py-6'>
         <Badge className='uppercase text-sm font-medium mb-2 absolute top-4 left-5'>
-          {post.categoryId.title}
+          {post.category.title}
         </Badge>
-        <h3 className='font-medium mb1'>{formattedDate}</h3>
+        <div className='flex justify-between '>
+          <h3 className='font-medium mb1'>{formattedDate}</h3>
+          <h3 className='font-normal text-gray-800 mb1'>{post.user.name}</h3>
+        </div>
+        {/* <h3 className='front-medium mb1'>{post.userId.name}</h3> */}
         <h4 className='h4 mb-1'>{post.title}</h4>
         <p className='text-muted-foreground text-lg line-clamp-2'>{post.description}</p>
         <Link href={`/blogs/${post.slug}`}>

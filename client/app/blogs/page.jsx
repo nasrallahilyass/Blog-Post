@@ -27,7 +27,7 @@ export default function Blog() {
           Recent Posts:
         </h3>
 
-        <div className='text-lg gap-y-5 xl:mt-8 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 mb-8'>
+        <div className='text-lg gap-y-5 xl:mt-8 grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 md:gap-x-5 xl:grid-cols-3 mb-8'>
           {posts.map((post, index) => {
             return (
               <div key={index} className="flex justify-center">
