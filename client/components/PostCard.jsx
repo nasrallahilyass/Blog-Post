@@ -10,6 +10,15 @@ const PostCard = ({ post }) => {
   const formattedDate = format(new Date(post.createdAt), "MMMM dd, yyyy");
   const imageUrl = post.image || "/placeholder-image.png";
 
+  // Function to strip HTML tags
+  const stripHtmlTags = (html) => {
+    if (!html) return "";
+    return html.replace(/<\/?[^>]+(>|$)/g, "");
+  };
+
+  // Get the truncated description without HTML tags
+  const truncatedDescription = stripHtmlTags(post.description);
+
   return (
     <Card className="group overflow-hidden relative" style={{ width: "400px" }}>
       <CardHeader className="p-0">
@@ -37,7 +46,7 @@ const PostCard = ({ post }) => {
         </div>
         <h4 className="h4 mb-1">{post.title}</h4>
         <p className="text-muted-foreground text-lg line-clamp-2">
-          {post.description}
+          {truncatedDescription}
         </p>
         <Link href={`/blogs/${post.slug}`}>
           <Button className="flex items-center justify-center rounded-lg mx-auto my-3">
