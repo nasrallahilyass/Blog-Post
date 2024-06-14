@@ -12,7 +12,6 @@ const links = [
   { path: '/projects', name: 'my projects' },
   { path: '/blogs', name: 'my Blogs' },
   { path: '/contact', name: 'contact' },
-  // { path: '/register', name: 'register' },
   { path: '/auth', name: 'auth'}
 ];
 

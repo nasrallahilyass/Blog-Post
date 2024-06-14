@@ -20,7 +20,11 @@ const MobileNav = () => {
       <div className='flex gap-x-6 cursor-pointer'>
         {
           status === 'authenticated' && (
-          <a onClick={handleGoogleLogout} className='font-bold'>Log out</a>
+          <div className="flex gap-x-2">
+            <a onClick={handleGoogleLogout} className='font-bold'>Log out</a> 
+            <a href="/new-post" className='font-medium'>Create Post</a>
+          </div>
+          
           )
         }
         <AlignJustify className='cursor-pointer' />
