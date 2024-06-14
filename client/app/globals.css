@@ -95,11 +95,37 @@
   @apply bg-primary;
 }
 
-/* React Quill styling */
-.ql-editor {
-  @apply text-base text-foreground;
+
+
+.tiptap-editor-wrapper {
+  width: 100%;
 }
 
-.quill > .ql-container > .ql-editor.al-blank::before {
-  @apply p-4;
+.tiptap-editor {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  min-height: 80px;
+  max-height: 1000px;
+  overflow-y: auto;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tiptap-editor-wrapper.dark {
+  background-color: #1F2937; /* Dark mode background */
+  border-color: #374151; /* Dark mode border color */
+}
+
+.ProseMirror {
+  outline: none; /* Ensures there's no default outline */
+}
+
+.ProseMirror-focused {
+  outline: none; /* Ensures no outline on focus */
 }
