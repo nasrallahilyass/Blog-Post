@@ -5,7 +5,7 @@ const { upload } = require('../middlewares/multer');
 
 router.get('/', getPosts);
 router.post('/', upload, createPost);
-router.get('/slug/:slug', getPostBySlug); // Ensure this is /slug/:slug
+router.get('/:slug', getPostBySlug); 
 router.get('/:id', getPostById);
 router.put('/:id', upload, updatePost);
 router.delete('/:id', deletePost);
