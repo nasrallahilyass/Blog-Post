@@ -15,6 +15,15 @@ const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+    session: {
+    jwt: true,
+  },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.id = user.id; // Ensure the user id is added to the session
+      return session;
+    },
+  },
 };
 
 export default authOptions;
