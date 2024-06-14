@@ -13,6 +13,9 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    domains: ['storage.googleapis.com'],
+  },
 };
 
 module.exports = nextConfig;
