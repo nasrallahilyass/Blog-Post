@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const prisma = require('./utils/connect');
-const { bucket } = require('./firebase'); // Import Firebase initialization
 
 // Load environment variables from .env file
 dotenv.config();
