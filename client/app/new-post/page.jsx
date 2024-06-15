@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import useSWR from "swr";
 import TextareaWithTiptap from "@/components/TextareaWithTiptap";
 
+import Spinner from "@/components/Spinner";
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const NewPost = () => {
@@ -26,7 +28,7 @@ const NewPost = () => {
     console.log("Session data:", session);
   }, [session]);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading") return <Spinner />;
 
   if (status === "unauthenticated") {
     signIn();
@@ -65,7 +67,7 @@ const NewPost = () => {
   };
 
   if (error) return <div>Error: {error.message}</div>;
-  if (!categories) return <div>Loading...</div>;
+  if (!categories) return <Spinner />;
 
   return (
     <div className="container mx-auto">

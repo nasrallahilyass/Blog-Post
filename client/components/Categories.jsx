@@ -1,6 +1,8 @@
 import useSWR from 'swr';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+import Spinner from './Spinner';
+
 const fetcher = url => fetch(url).then(res => res.json());
 
 const Categories = () => {
@@ -12,7 +14,7 @@ const Categories = () => {
   };
 
   if (error) return <div>Error: {error.message}</div>;
-  if (!categories) return <div>Loading...</div>;
+  if (!categories) return <Spinner />;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-4 mb-5">

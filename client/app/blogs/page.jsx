@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import Categories from "@/components/Categories";
 import PostCard from "@/components/PostCard"; // Ensure correct import
+import Spinner from "@/components/Spinner";
 
 const fetcher = url => fetch(url).then(res => res.json());
 
@@ -9,7 +10,7 @@ export default function Blog() {
   const { data: posts, error } = useSWR('http://localhost:5000/api/posts', fetcher);
 
   if (error) return <div>Error: {error.message}</div>;
-  if (!posts) return <div>Loading...</div>;
+  if (!posts) return <Spinner />;
 
   return (
     <section className='min-h-screen pt-12'>
