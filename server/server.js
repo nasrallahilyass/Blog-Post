@@ -1,4 +1,3 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -14,12 +13,26 @@ const categoryRoutes = require("./routes/categories");
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: '*', // Allow all origins
-    methods: "GET,POST,PUT,DELETE",
-  })
-);
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    const allowedOrigins = [
+      'http://localhost:3000',
+      /^https:\/\/.*\.vercel\.app$/
+    ];
+    if (allowedOrigins.some(allowedOrigin => 
+      allowedOrigin instanceof RegExp ? allowedOrigin.test(origin) : allowedOrigin === origin
+    )) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: "GET,POST,PUT,DELETE",
+};
+
+app.use(cors(corsOptions));
 
 // Use routes
 app.use("/api/posts", postRoutes);
