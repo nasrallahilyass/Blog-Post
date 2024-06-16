@@ -110,7 +110,7 @@ const NewPost = () => {
           onChange={setDescription}
           className="w-full"
         />
-        <div className="flex justify-between mt-6">
+        <div className="flex justify-between my-6 ">
           <Button variant="outline" type="reset">
             Cancel
           </Button>
