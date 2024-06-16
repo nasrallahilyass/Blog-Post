@@ -6,7 +6,7 @@ import Spinner from './Spinner';
 const fetcher = url => fetch(url).then(res => res.json());
 
 const Categories = () => {
-  const { data: categories, error } = useSWR('http://localhost:5000/api/categories', fetcher);
+  const { data: categories, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`, fetcher);
 
   const getCategoryBackgroundColor = (index) => {
     const colors = ["bg-red-300", "bg-green-300", "bg-blue-300", "bg-orange-300", "bg-purple-300"];

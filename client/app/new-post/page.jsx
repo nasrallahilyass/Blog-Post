@@ -17,7 +17,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const NewPost = () => {
   const { data: session, status } = useSession();
-  const { data: categories, error } = useSWR("http://localhost:5000/api/categories", fetcher);
+  const { data: categories, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`, fetcher);
   const [title, setTitle] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
@@ -53,7 +53,7 @@ const NewPost = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/posts", formData, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

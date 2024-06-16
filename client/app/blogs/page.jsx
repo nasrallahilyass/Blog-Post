@@ -7,7 +7,7 @@ import Spinner from "@/components/Spinner";
 const fetcher = url => fetch(url).then(res => res.json());
 
 export default function Blog() {
-  const { data: posts, error } = useSWR('http://localhost:5000/api/posts', fetcher);
+  const { data: posts, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, fetcher);
 
   if (error) return <div>Error: {error.message}</div>;
   if (!posts) return <Spinner />;

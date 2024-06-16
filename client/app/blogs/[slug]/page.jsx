@@ -13,7 +13,7 @@ const SinglePost = () => {
   const slug = pathname.split("/").pop();
 
   const { data: post, error } = useSWR(
-    slug ? `http://localhost:5000/api/posts/${slug}` : null,
+    slug ? `${process.env.NEXT_PUBLIC_API_URL}/api/posts/${slug}` : null,
     fetcher
   );
 
