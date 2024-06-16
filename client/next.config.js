@@ -2,6 +2,7 @@
 
 const nextConfig = {
   async rewrites() {
+    const backendUrl = process.env.BACKEND_URL || 'http://localhost:5000';
     return [
       {
         source: '/api/auth/:path*', // Ensure NextAuth.js routes are not proxied
@@ -9,7 +10,7 @@ const nextConfig = {
       },
       {
         source: '/api/:path*', // Proxy other API routes to the backend server
-        destination: `${process.env.BACKEND_URL}/api/:path*`
+        destination: `${backendUrl}/api/:path*`,
       },
     ];
   },
