@@ -6,14 +6,18 @@
         "use": "@vercel/next"
       },
       {
-        "src": "client/pages/api/**/*.js",
+        "src": "server/server.js",
         "use": "@vercel/node"
       }
     ],
     "routes": [
       {
+        "src": "/api/auth/(.*)",
+        "dest": "/client/api/auth/$1"
+      },
+      {
         "src": "/api/(.*)",
-        "dest": "/client/api/$1"
+        "dest": "/server/api/$1"
       },
       {
         "src": "/(.*)",
