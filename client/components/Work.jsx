@@ -17,86 +17,23 @@ import ProjectCard from '@/components/ProjectCard';
 
 const projectData = [
   {
-    image: '/work/3.png',
-    category: 'react js',
-    name: 'Nexa Website',
+    image: '/work/1.png',
+    category: 'reactjs js',
+    name: 'Ecom Website',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/4.png',
-    category: 'react js',
-    name: 'Solstice Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
+      'Using React, Redux, Firebase, and Stripe API, I built an e-commerce website with full functionality like adding items to the cart, checkout, and payment processing.',
+    link: 'https://morocco-book.netlify.app/checkout',
+    github: 'https://github.com/nasrallahilyass/my-EcommerceWebsite',
   },
   {
     image: '/work/2.png',
     category: 'next js',
-    name: 'Lumina Website',
+    name: 'Blog Website',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
+      'Using Next.js, MongoDb, ExpressJS, ... I built a blog website with full functionality like creating, updating, and deleting posts, and user authentication.',
     link: '/',
     github: '/',
-  },
-  {
-    image: '/work/1.png',
-    category: 'next js',
-    name: 'Evolve Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/3.png',
-    category: 'next js',
-    name: 'Ignite Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/4.png',
-    category: 'next js',
-    name: 'Envision Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/1.png',
-    category: 'fullstack',
-    name: 'Serenity Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/3.png',
-    category: 'fullstack',
-    name: 'Nova Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
-  {
-    image: '/work/2.png',
-    category: 'fullstack',
-    name: 'Zenith Website',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quis.',
-    link: '/',
-    github: '/',
-  },
+  }
 ];
 
 const Work = () => {

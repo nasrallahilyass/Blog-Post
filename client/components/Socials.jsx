@@ -24,7 +24,9 @@ const Socials = ({ containerStyles, iconsStyles }) => {
       {icons.map((icon, index) => {
         return (
           <Link href={icon.path} target='_blank' key={index}>
-            <div className={`${iconsStyles}`}>{icon.name}</div>
+            <div className={`${iconsStyles} hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black p-2 rounded-full transition-colors`}>
+              {icon.name}
+            </div>
           </Link>
         );
       })}
