@@ -136,12 +136,12 @@ const About = () => {
         </h2>
         <div className="flex flex-col xl:flex-row">
           {/* image */}
-          <div className="hidden xl:flex flex-1 relative">
+          {/* <div className="hidden xl:flex flex-1 relative">
             <DevImg
               containerStyles="bg-about_shape_light dark:bg-about_shape_dark w-[505px] h-[505px] bg-no-repeat relative"
               imgSrc="/about/developer.png"
             />
-          </div>
+          </div> */}
           {/* tabs */}
           <div className="flex-1 flex justify-center items-center">
             <Tabs defaultValue="personal">
@@ -173,7 +173,7 @@ const About = () => {
                     </p>
                     {/* <div className="flex-1 lg:flex xl:flex xl:flex-col"> */}
                       {/* icons */}
-                      <div className="grid xl:grid-cols-2 gap-4 mb-12">
+                      {/* <div className="grid xl:grid-cols-2 gap-4 mb-12">
                         {infoData.map((item, index) => {
                           return (
                             <div
@@ -185,7 +185,7 @@ const About = () => {
                             </div>
                           );
                         })}
-                      </div>
+                      </div> */}
                       {/* languages */}
                       {/* <div className="flex flex-col gap-y-2">
                         <div className="text-primary text-xl font-bold mb-3">
