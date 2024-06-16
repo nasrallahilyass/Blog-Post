@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import format from "date-fns/format";
 import useSWR from "swr";
 import Spinner from '@/components/Spinner';
@@ -7,8 +7,7 @@ import Spinner from '@/components/Spinner';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const BlogPost = () => {
-  const pathname = usePathname();
-  const slug = pathname.split("/").pop();
+  const { slug } = useParams();
 
   const { data: post, error } = useSWR(
     slug ? `${process.env.NEXT_PUBLIC_API_URL}/api/posts/${slug}` : null,
