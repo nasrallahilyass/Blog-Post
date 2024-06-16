@@ -7,10 +7,11 @@ import Spinner from "@/components/Spinner";
 const fetcher = url => fetch(url).then(res => res.json());
 
 export default function Blog() {
-  const { data: posts, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, fetcher);
+  const { data: posts, error: postsError } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, fetcher);
+  const { data: categories, error: categoriesError } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`, fetcher);
 
-  if (error) return <div>Error: {error.message}</div>;
-  if (!posts) return <Spinner />;
+  if (postsError || categoriesError) return <div>Error: {postsError?.message || categoriesError?.message}</div>;
+  if (!posts || !categories) return <Spinner />;
 
   return (
     <section className='min-h-screen pt-12'>
@@ -24,7 +25,7 @@ export default function Blog() {
         <h3 className="ml-6 font-bold text-2xl mb-6 underline">
           Categories:
         </h3>
-        <Categories/>
+        <Categories categories={categories} />
         <h3 className="ml-6 font-bold text-2xl mb-6 underline">
           Recent Posts:
         </h3>
