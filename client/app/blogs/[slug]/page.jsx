@@ -1,14 +1,12 @@
-"use client"
+"use client";
 import { usePathname } from 'next/navigation';
 import format from "date-fns/format";
-
-
 import useSWR from "swr";
 import Spinner from '@/components/Spinner';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const SinglePost = () => {
+const BlogPost = () => {
   const pathname = usePathname();
   const slug = pathname.split("/").pop();
 
@@ -24,9 +22,7 @@ const SinglePost = () => {
 
   const formattedDate = format(new Date(post.createdAt), "MMMM dd, yyyy");
 
-
   return (
-    
     <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl text-center sm:text-4xl font-bold mb-7 text-gray-900 dark:text-white">
         {post.title}
@@ -48,4 +44,4 @@ const SinglePost = () => {
   );
 };
 
-export default SinglePost;
+export default BlogPost;
